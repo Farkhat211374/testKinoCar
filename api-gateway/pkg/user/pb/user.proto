@@ -1,0 +1,81 @@
+syntax = "proto3";
+package user;
+option go_package = "./pkg/user/pb";
+
+message Car {
+  string id = 1;
+  string brand = 2;
+  string model = 3;
+  int32 year = 4;
+  float displacement = 6;
+  string body = 7;
+  float mpg = 8;
+  int32 cylinders = 9;
+  float horsepower = 10;
+  string brake_system = 11;
+  string aspiration = 12;
+  float acceleration = 13;
+  string country = 14;
+}
+
+message Movie {
+  string id = 1;
+  string title = 2;
+  float rating = 3;
+  int32 year = 4;
+  string director = 5;
+  repeated string genre = 6;
+  int32 duration = 7;
+}
+
+service UserService {
+  rpc GetMoviesByCar(GetMoviesByCarRequest) returns (GetMoviesByCarResponse);
+  rpc GetCarsByMovie(GetCarsByMovieRequest) returns (GetCarsByMovieResponse);
+  rpc GetCarInfo(GetCarInfoRequest) returns (GetCarInfoResponse);
+  rpc GetMovieInfo(GetMovieInfoRequest) returns (GetMovieInfoResponse);
+  rpc Publish(PublishRequest) returns (PublishResponse);
+}
+
+message PublishRequest{
+  string car_name = 1;
+  repeated string movies = 2;
+}
+
+message PublishResponse{
+  string status = 1;
+}
+
+
+message GetMoviesByCarRequest{
+  string car_name = 1;
+}
+
+message GetMoviesByCarResponse{
+  Car car = 1;
+  repeated string movies = 2;
+}
+
+message GetCarsByMovieRequest{
+  string movie_name = 1;
+}
+
+message GetCarsByMovieResponse{
+  Movie movie = 1;
+  repeated string cars = 2;
+}
+
+message GetCarInfoRequest{
+  string car_name = 1;
+}
+
+message GetCarInfoResponse{
+  Car car = 1;
+}
+
+message GetMovieInfoRequest{
+  string movie_name = 1;
+}
+
+message GetMovieInfoResponse{
+  Movie movie = 1;
+}

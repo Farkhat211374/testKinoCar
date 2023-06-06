@@ -1,0 +1,46 @@
+syntax = "proto3";
+package findcar;
+option go_package = "./pkg/findcar/pb";
+
+message Findcar {
+  string name = 1;
+  repeated string movies = 2;
+}
+service FindcarService {
+  rpc CreateFindcar (CreateFindcarRequest) returns (CreateFindcarResponse);
+  rpc ReadFindcar (ReadFindcarRequest) returns (ReadFindcarResponse); // return NOT_FOUND if not found
+  rpc UpdateFindcar (UpdateFindcarRequest) returns (UpdateFindcarResponse); // return NOT_FOUND if not found
+  rpc DeleteFindcar (DeleteFindcarRequest) returns (DeleteFindcarResponse); // return NOT_FOUND if not found
+}
+
+message CreateFindcarRequest {
+  Findcar findcar = 1;
+}
+
+message CreateFindcarResponse {
+  Findcar findcar = 1;
+}
+
+message ReadFindcarRequest {
+  string car_name = 1;
+}
+
+message ReadFindcarResponse {
+  Findcar findcar = 1;
+}
+
+message UpdateFindcarRequest {
+  Findcar findcar = 1;
+}
+
+message UpdateFindcarResponse {
+  Findcar findcar = 1;
+}
+
+message DeleteFindcarRequest {
+  string car_name = 1;
+}
+
+message DeleteFindcarResponse {
+  string car_name = 1;
+}
